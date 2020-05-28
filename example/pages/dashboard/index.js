@@ -1,14 +1,8 @@
-import componentsConfig from './config';
+import list from '../../config';
+import Page from '../../common/page';
 
 Page({
   data: {
-    list: componentsConfig
+    list
   },
-
-  onLoad: function () {
-
-  },
-
-  onShow: function() {
-  },
-})
+});

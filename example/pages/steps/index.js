@@ -1,70 +1,36 @@
+import Page from '../../common/page';
+import Toast from '../../dist/toast/toast';
+
 Page({
   data: {
+    active: 1,
     steps: [
       {
-        current: true,
-        done: true,
         text: '步骤一',
-        desc: '10.01'
+        desc: '描述信息'
       },
       {
-        done: false,
-        current: false,
         text: '步骤二',
-        desc: '10.02'
+        desc: '描述信息'
       },
       {
-        done: false,
-        current: false,
-        text: '步骤三'
-      }
-    ],
-    steps2: [
-      {
-        current: false,
-        done: true,
-        text: '步骤一',
-        desc: '10.01'
-      },
-      {
-        done: true,
-        current: true,
-        text: '步骤二',
-        desc: '10.02'
-      },
-      {
-        done: false,
-        current: false,
         text: '步骤三',
-        desc: '10.03'
-      }
-    ],
-    steps3: [
-      {
-        current: false,
-        done: true,
-        text: '步骤一',
-        desc: '10.01'
+        desc: '描述信息'
       },
       {
-        done: true,
-        current: false,
-        text: '步骤二',
-        desc: '10.02'
-      },
-      {
-        done: true,
-        current: true,
-        text: '步骤三',
-        desc: '10.03'
+        text: '步骤四',
+        desc: '描述信息'
       }
     ]
   },
 
-  onLoad() {
-
+  nextStep() {
+    this.setData({
+      active: ++this.data.active % 4
+    });
   },
 
-  onShow() {
+  onClick(event) {
+    Toast(`Index: ${event.detail}`);
   },
 });

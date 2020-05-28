@@ -1,66 +1,60 @@
-const Zan = require('../../dist/index');
+import Page from '../../common/page';
+import Dialog from '../../dist/dialog/dialog';
 
-Page(Object.assign({}, Zan.Dialog, {
-  toggleBaseDialog() {
-    this.showZanDialog({
-      title: '弹窗',
-      content: '这是一个模态弹窗',
-      showCancel: true
-    }).then(() => {
-      console.log('=== dialog ===', 'type: confirm');
-    }).catch(() => {
-      console.log('=== dialog ===', 'type: cancel');
+const message = '代码是写出来给人看的，附带能在机器上运行';
+
+Page({
+  data: {
+    show: false
+  },
+
+  showCustomDialog() {
+    this.setData({ show: true });
+  },
+
+  onClickAlert() {
+    Dialog.alert({
+      title: '标题',
+      message
     });
   },
 
-  toggleWithoutTitleDialog() {
-    this.showZanDialog({
-      content: '这是一个模态弹窗'
-    }).then(() => {
-      console.log('=== dialog without title ===', 'type: confirm');
+  getUserInfo(event) {
+    console.log(event.detail);
+  },
+
+  onClickAlert2() {
+    Dialog.alert({
+      message
     });
   },
 
-  toggleButtonDialog() {
-    this.showZanDialog({
-      title: '弹窗',
-      content: '这是一个模态弹窗',
-      buttons: [{
-        text: '现金支付',
-        color: 'red',
-        type: 'cash'
-      }, {
-        text: '微信支付',
-        color: '#3CC51F',
-        type: 'wechat'
-      }, {
-        text: '取消',
-        type: 'cancel'
-      }]
-    }).then(({ type }) => {
-      console.log('=== dialog with custom buttons ===', `type: ${type}`);
+  onClickConfirm() {
+    Dialog.confirm({
+      title: '标题',
+      message
     });
   },
 
-  toggleVerticalDialog() {
-    this.showZanDialog({
-      title: '弹窗',
-      content: '这是一个模态弹窗',
-      buttonsShowVertical: true,
-      buttons: [{
-        text: '现金支付',
-        color: 'red',
-        type: 'cash'
-      }, {
-        text: '微信支付',
-        color: '#3CC51F',
-        type: 'wechat'
-      }, {
-        text: '取消',
-        type: 'cancel'
-      }]
-    }).then(({ type }) => {
-      console.log('=== dialog with vertical buttons ===', `type: ${type}`);
+  onClickAsyncClose() {
+    Dialog.confirm({
+      title: '标题',
+      message,
+      asyncClose: true
+    })
+      .then(() => {
+        setTimeout(() => {
+          Dialog.close();
+        }, 1000);
+      })
+      .catch(() => {
+        Dialog.close();
+      });
+  },
+
+  onClose(event) {
+    this.setData({
+      show: false
     });
   }
-}));
+});

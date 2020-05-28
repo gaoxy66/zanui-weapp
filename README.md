@@ -1,174 +1,135 @@
-<p>
-<a href="https://github.com/youzan/"><img alt="有赞logo" width="36px" src="https://img.yzcdn.cn/public_files/2017/02/09/e84aa8cbbf7852688c86218c1f3bbf17.png" alt="youzan">
-</p></a>
 <p align="center">
-    <img alt="项目logo" src="https://img.yzcdn.cn/public_files/2017/02/06/ee0ebced79a80457d77ce71c7d414c74.png">
+  <img alt="logo" src="https://img.yzcdn.cn/vant/logo.png" width="120" style="margin-bottom: 10px;">
 </p>
-<p align="center">高颜值、好用、易扩展的小程序 UI 库</p>
+<h3 align="center">轻量、可靠的小程序 UI 组件库</h3>
 
+<p align="center">
+  <img src="https://img.shields.io/npm/v/@vant/weapp.svg?style=for-the-badge" alt="npm version" />
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&color=#4fc08d" />
+  <img src="https://img.shields.io/npm/dt/@vant/weapp.svg?style=for-the-badge&color=#4fc08d" alt="downloads" />
+  <img src="https://img.shields.io/npm/dm/@vant/weapp.svg?style=for-the-badge&color=#4fc08d" alt="downloads" />
+</p>
 
-## 概述
-[ZanUI-WeApp]是有赞移动 Web UI 规范 `ZanUI` 的小程序现实版本，结合了微信的视觉规范，为用户提供更加统一的使用感受。
+<p align="center">
+  🔥 <a href="https://youzan.github.io/vant-weapp">文档网站</a>
+  &nbsp;
+  &nbsp;
+  💡 <a href="https://vant-contrib.gitee.io/vant-weapp">国内镜像文档</a>
+  &nbsp;
+  &nbsp;
+  🚀 <a href="https://github.com/youzan/vant" target="_blank">Vue 版</a>
+</p>
+---
 
-现已包含 badge、btn、card、cell、dialog、icon、label、noticebar、panel、popup、switch、tab、toast、toptips 等组件或元素。具体可以扫描下方小程序二维码，体验组件库示例 Demo
+## 介绍
 
-![ZanUI-WeApp 演示](https://img.yzcdn.cn/public_files/2017/10/30/554dd940eb1a269d4ac9133e78ae321f.jpg?imageView2/2/w/300/h/300)
-
-更多背景介绍，请移步 [我们写的介绍文章](http://tech.youzan.com/zanui-weapp/)。
-
-## 下载
-``` bash
-git clone https://github.com/youzan/zanui-weapp.git
-```
+Vant Weapp 是移动端 Vue 组件库 [Vant](https://github.com/youzan/vant) 的小程序版本，两者基于相同的视觉规范，提供一致的 API 接口，助力开发者快速搭建小程序应用。
 
 ## 预览
-1. 在 zanui-weapp 根目录下运行
-``` bash
+
+扫描下方小程序二维码，体验组件库示例：
+
+<img src="https://img.yzcdn.cn/vant-weapp/qrcode-201808101114.jpg" width="200" height="200" style="margin-top: 10px;" >
+
+## 使用之前
+
+使用 Vant Weapp 前，请确保你已经学习过微信官方的 [小程序简易教程](https://developers.weixin.qq.com/miniprogram/dev/framework/) 和 [自定义组件介绍](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/)。
+
+## 安装
+
+### 方式一. 通过 npm 安装 (推荐)
+
+小程序已经支持使用 npm 安装第三方包，详见 [npm 支持](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html?search-key=npm)
+
+```bash
+# 通过 npm 安装
+npm i @vant/weapp -S --production
+
+# 通过 yarn 安装
+yarn add @vant/weapp --production
+
+# 安装 0.x 版本
+npm i vant-weapp -S --production
+```
+
+### 方式二. 下载代码
+
+直接通过 git 下载 Vant Weapp 源代码，并将`dist`目录拷贝到自己的项目中
+```bash
+git clone https://github.com/youzan/vant-weapp.git
+```
+
+## 使用组件
+
+以按钮组件为例，只需要在 json 文件中引入按钮对应的自定义组件即可
+
+```json
+{
+  "usingComponents": {
+    "van-button": "/path/to/vant-weapp/dist/button/index"
+  }
+}
+```
+
+接着就可以在 wxml 中直接使用组件
+
+```html
+<van-button type="primary">按钮</van-button>
+```
+
+## 在开发者工具中预览
+
+```bash
 # 安装项目依赖
 npm install
+
 # 执行组件编译
 npm run dev
 ```
-2. 打开[微信web开发者工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html)，'本地小程序项目 - 添加项目'，把 zanui-weapp/example 目录添加进去就可以预览示例demo了。
 
-![](https://img.yzcdn.cn/public_files/2017/02/08/a5e6445075826183659742cc6946c477.png)
+打开[微信开发者工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html)，把`vant-weapp/example`目录添加进去就可以预览示例了。
 
-## 使用
+PS：关于 `van-area`  Area 省市区选择组件，地区数据初始化可以直接在云开发环境中导入`vant-weapp/example/database_area.JSON`文件使用
 
-1. 使用 [ZanUI-WeApp] 前请确保已经学习过微信官方的 [小程序简易教程] 和 [小程序框架介绍]。
-2. 然后用 [Bower] 将 [ZanUI-WeApp] 添加到你的项目中使用。
-3. 你也可以 fork 出一份你自己的 [ZanUI-WeApp]，这样可以获得更稳定的代码和更方便的进行个性定制。
+## 基础库版本
 
-我们推荐在你的`app.wxss`直接引入`zanui-weapp/dist/index.wxss`。
+Vant Weapp 最低支持到小程序基础库 1.9.9 版本
 
-详细使用文档，请参考 [快速上手](https://www.youzanyun.com/zanui/weapp)
+## 微信讨论群
 
-### 组件分类介绍
-根据功能的不同，可以将组件大致的分为4类：
+欢迎大家在微信上联系我们，添加下方微信并注明『交流 vant-weapp』即可
 
-#### 1. 简单组件
+<img src="https://img.yzcdn.cn/vant/wechat_20180606.png" width="220" height="292" >
 
-如按钮组件，只要按照wxml结构写就好了
+## 加入我们
 
-~~~html
-<!-- example/btn/index.html -->
+**有赞前端团队**是由一群年轻、皮实、对技术饱含热情的小伙伴组成的，目前共有 100 多名前端工程师，分布在业务中台、电商、零售、美业、资产、赋能等业务线。
 
-<view class="zan-btn">按钮</view>
-~~~
+我们热爱分享和开源，崇尚用工程师的方式解决问题，因此造了很多工具来解决我们遇到的问题，目前我们维护的开源产品有：
 
-![](https://img.yzcdn.cn/public_files/2017/02/08/1b1e39ed3dc6b63519a68ba1e2650cfc.png)
+<img src="https://img.yzcdn.cn/public_files/2019/07/22/f4b70763c55c8710c52c667ecf192c05.jpeg" width="320" height="303">
 
-#### 2. 复杂组件
+我们正在寻找更多优秀的小伙伴，一起拓展前端技术的边界，期待你的加入！
 
-如加载更多组件，需要先引入定义好的模版，然后给模版传递数据
+- <a target="_blank" href="https://app.mokahr.com/apply/youzan/6252#/job/96f5d2c7-e657-4d31-9244-195edc443a7f?_k=jf2141">职位详情</a>（Base: 杭州/深圳）
+- <a target="_blank" href="https://tech.youzan.com/tag/front-end/">团队博客</a>
+- <a target="_blank" href="https://github.com/youzan">开源项目</a>
 
-~~~html
-<!-- example/loadmore/index.html -->
+## 链接
 
-<!-- 引入组件模版 -->
-<import src="path/to/zanui-weapp/dist/loadmore/index.wxml" />
-
-<!-- 加载中 -->
-<template is="zan-loadmore" data="{{loading: true}}" />
-
-<!-- 一条数据都没有 -->
-<template is="zan-loadmore" data="{{nodata: true}}" />
-
-<!-- 没有更多数据了 -->
-<template is="zan-loadmore" data="{{nomore: true}}" />
-~~~
-
-![](https://img.yzcdn.cn/public_files/2017/02/08/b96fdc7971577b32915604c5b2c1a3bb.png)
-
-#### 3. 带事件回调的组件
-
-如数量选择组件，需要先引入模版，然后给模版传递数据
-
-~~~html
-<!-- example/stepper/index.html -->
-
-<import src="path/to/zanui-weapp/dist/stepper/index.wxml" />
-
-<template is="zan-stepper" data="{{ ...stepper, componentId: 'customId' }}" />
-~~~
-
-然后通过`Zan.Stepper`把相关回调注入到页面中
-
-~~~js
-// example/stepper/index.js
-
-var Zan = require('path/to/zanui-weapp/dist/index');
-
-Page(Object.assign({}, Zan.Stepper, {
-  data: {
-    stepper: {
-      stepper: 10,
-      min: 1,
-      max: 20
-    },
-  },
-
-  handleZanStepperChange(e) {
-    // 如果页面有多个Stepper组件，则通过唯一componentId进行索引
-    var compoenntId = e.componentId;
-    var stepper = e.stepper;
-
-    this.setData({
-      'stepper.stepper': stepper
-    });
-  }
-}));
-~~~
-
-![](https://img.yzcdn.cn/public_files/2017/02/08/b791dfef150b01a7ce1e9aa9e60e0038.png)
-
-#### 4. API类组件
-
-如Toast组件，需要先引入模版，并在页面上使用。
-
-> 注意`zanToast`这个数据也是通过`Zan.Toast`注入到页面的
-
-~~~html
-<!-- example/toast/index.html -->
-
-<import src="path/to/zanui-weapp/dist/toast/index.wxml" />
-
-<view bindtap="showToast">显示toast</view>
-
-<template is="zan-toast" data="{{ zanToast }}"></template>
-~~~
-
-将API注入到页面后，就可以通过`this`来直接调用相应的API了
-
-~~~js
-<!-- example/toast/index.js -->
-
-var Zan = require('path/to/zanui-weapp/dist/index');
-
-Page(Object.assign({}, Zan.Toast, {
-  showToast() {
-    this.showZanToast('toast的内容');
-  }
-}));
-
-~~~
-
-![](https://img.yzcdn.cn/public_files/2017/02/08/ada80798c88df08060ce96964384e88e.png)
-
-更多示例可以在项目的`example`目录中查看
+* [更新日志](https://github.com/youzan/vant-weapp/blob/dev/docs/markdown/changelog.md)
+* [意见反馈](https://github.com/youzan/vant-weapp/issues)
+* [加入我们](https://job.youzan.com)
+* [Vant: 移动端 Vue UI](https://github.com/youzan/vant)
 
 ## 开源协议
+
 本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89)协议，请自由地享受和参与开源。
 
-## 贡献
-
-如果你有好的意见或建议，欢迎给我们提 [issue] 或 [PR]，为优化 [ZanUI-Weapp] 贡献力量
-
-[ZanUI-WeApp]: https://github.com/youzan/zanui-weapp
-[issue]: https://github.com/youzan/zanui-weapp/issues/new
-[PR]: https://github.com/youzan/zanui-weapp/compare
-[ZanUI WeApp]: https://github.com/youzan/zanui-weapp
+[vant-weapp]: https://github.com/youzan/vant-weapp
+[issue]: https://github.com/youzan/vant-weapp/issues/new
+[PR]: https://github.com/youzan/vant-weapp/compare
 [MIT]: http://opensource.org/licenses/MIT
-[Bower]: https://bower.io/
 [小程序简易教程]: https://mp.weixin.qq.com/debug/wxadoc/dev/
 [小程序框架介绍]: https://mp.weixin.qq.com/debug/wxadoc/dev/framework/MINA.html
+[微信开发者工具]: https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html

@@ -1,82 +1,43 @@
-const { Tab, extend } = require('../../dist/index');
+import Page from '../../common/page';
 
-Page(extend({}, Tab, {
+Page({
   data: {
-    tab1: {
-      list: [{
-        id: 'all',
-        title: '全部'
-      }, {
-        id: 'topay',
-        title: '待付款'
-      }, {
-        id: 'tosend',
-        title: '待发货'
-      }, {
-        id: 'send',
-        title: '待收货'
-      }, {
-        id: 'sign',
-        title: '已完成订单'
-      }],
-      selectedId: 'all'
-    },
-    tab2: {
-      list: [{
-        id: '1',
-        title: '最新商品1'
-      }, {
-        id: '2',
-        title: '最新商品2'
-      }, {
-        id: '3',
-        title: '最新商品3'
-      }, {
-        id: '4',
-        title: '最新商品4'
-      }, {
-        id: '5',
-        title: '最新商品5'
-      }, {
-        id: '6',
-        title: '最新商品6'
-      }],
-      selectedId: '1',
-      scroll: true,
-      height: 45
-    },
-    tab3: {
-      list: [{
-        id: '1',
-        title: '商品1'
-      }, {
-        id: '2',
-        title: '商品2'
-      }, {
-        id: '3',
-        title: '商品3'
-      }, {
-        id: '4',
-        title: '商品4'
-      }, {
-        id: '5',
-        title: '商品5'
-      }, {
-        id: '6',
-        title: '商品6'
-      }],
-      selectedId: '1',
-      scroll: true,
-      height: 45
-    }
+    tabs2: [1, 2],
+    tabs3: [1, 2, 3],
+    tabs4: [1, 2, 3, 4],
+    tabs6: [1, 2, 3, 4, 5, 6],
+    tabsWithName: [
+      { name: 'a', index: 1 },
+      { name: 'b', index: 2 },
+      { name: 'c', index: 3 }
+    ]
   },
 
-  handleZanTabChange(e) {
-    var componentId = e.componentId;
-    var selectedId = e.selectedId;
+  onClickDisabled(event) {
+    wx.showToast({
+      title: `标签 ${event.detail.index + 1} 已被禁用`,
+      icon: 'none'
+    });
+  },
 
-    this.setData({
-      [`${componentId}.selectedId`]: selectedId
+  onChange(event) {
+    wx.showToast({
+      title: `切换到标签 ${event.detail.index + 1}`,
+      icon: 'none'
+    });
+  },
+
+  onClickNavRight() {
+    wx.showToast({
+      title: '点击 right nav',
+      icon: 'none'
+    });
+  },
+
+  onClick(event) {
+    wx.showToast({
+      title: `点击标签 ${event.detail.index + 1}`,
+      icon: 'none'
     });
   }
-}));
+});

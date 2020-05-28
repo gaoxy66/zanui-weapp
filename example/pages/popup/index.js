@@ -1,40 +1,95 @@
+import Page from '../../common/page';
+
 Page({
-
   data: {
-    showPopup: false,
-    showLeftPopup: false,
-    showRightPopup: false,
-    showTopPopup: false,
-    showBottomPopup: false
+    show: {
+      basic: false,
+      top: false,
+      bottom: false,
+      left: false,
+      right: false,
+      round: false,
+      closeIcon: false,
+      customCloseIcon: false,
+      customIconPosition: false
+    }
   },
 
-  togglePopup() {
+  toggle(type, show) {
     this.setData({
-      showPopup: !this.data.showPopup
+      [`show.${type}`]: show
     });
   },
 
-  toggleLeftPopup() {
-    this.setData({
-      showLeftPopup: !this.data.showLeftPopup
-    });
+  showBasic() {
+    this.toggle('basic', true);
   },
 
-  toggleRightPopup() {
-    this.setData({
-      showRightPopup: !this.data.showRightPopup
-    });
+  hideBasic() {
+    this.toggle('basic', false);
   },
 
-  toggleBottomPopup() {
-    this.setData({
-      showBottomPopup: !this.data.showBottomPopup
-    });
+  showTop() {
+    this.toggle('top', true);
   },
 
-  toggleTopPopup() {
-    this.setData({
-      showTopPopup: !this.data.showTopPopup
-    });
+  hideTop() {
+    this.toggle('top', false);
+  },
+
+  showLeft() {
+    this.toggle('left', true);
+  },
+
+  hideLeft() {
+    this.toggle('left', false);
+  },
+
+  showRight() {
+    this.toggle('right', true);
+  },
+
+  hideRight() {
+    this.toggle('right', false);
+  },
+
+  showBottom() {
+    this.toggle('bottom', true);
+  },
+
+  hideBottom() {
+    this.toggle('bottom', false);
+  },
+
+  showRound() {
+    this.toggle('round', true);
+  },
+
+  hideRound() {
+    this.toggle('round', false);
+  },
+
+  showCloseIcon() {
+    this.toggle('closeIcon', true);
+  },
+
+  hideCloseIcon() {
+    this.toggle('closeIcon', false);
+  },
+
+  showCustomCloseIcon() {
+    this.toggle('customCloseIcon', true);
+  },
+
+  hideCustomCloseIcon() {
+    this.toggle('customCloseIcon', false);
+  },
+
+  showCustomIconPosition() {
+    this.toggle('customIconPosition', true);
+  },
+
+  hideCustomIconPosition() {
+    this.toggle('customIconPosition', false);
   }
 });

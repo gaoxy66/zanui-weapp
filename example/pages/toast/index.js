@@ -1,40 +1,45 @@
-const Zan = require('../../dist/index');
+import Page from '../../common/page';
+import Toast from '../../dist/toast/toast';
 
-Page(Object.assign({}, Zan.Toast, {
-  data: {},
-
+Page({
   showToast() {
-    this.showZanToast('toast的内容');
+    Toast('提示内容');
   },
 
-  showIconToast() {
-    this.showZanToast({
-      title: 'toast的内容',
-      icon: 'fail'
-    });
-  },
-
-  showImageToast() {
-    this.showZanToast({
-      title: 'toast的内容',
-      image: 'https://b.yzcdn.cn/v2/image/dashboard/secured_transaction/suc_green@2x.png'
-    });
+  showLongToast() {
+    Toast('这是一条长文字提示，超过一定字数就会换行');
   },
 
   showLoadingToast() {
-    this.showZanToast({
-      title: 'toast的内容',
-      icon: 'loading'
-    });
+    Toast.loading({ mask: true, message: '加载中...' });
   },
 
-  showOnlyIcon() {
-    this.showZanToast({
-      icon: 'fail'
-    });
+  showSuccessToast() {
+    Toast.success('成功文案');
   },
 
-  showLoading() {
-    this.showZanLoading('加载中');
+  showFailToast() {
+    Toast.fail('失败提示');
+  },
+
+  showCustomizedToast(duration) {
+    const text = second => `倒计时 ${second} 秒`;
+    const toast = Toast.loading({
+      duration: 0,
+      forbidClick: true,
+      loadingType: 'spinner',
+      message: text(3)
+    });
+
+    let second = 3;
+    const timer = setInterval(() => {
+      second--;
+      if (second) {
+        toast.setData({ message: text(second) });
+      } else {
+        clearInterval(timer);
+        Toast.clear();
+      }
+    }, 1000);
   }
-}));
+});

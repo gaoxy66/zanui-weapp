@@ -1,118 +1,90 @@
-<import src="/dist/switch/index.wxml" />
+<demo-block title="基础用法">
+  <van-cell-group>
+    <van-cell title="单元格" value="内容" />
+    <van-cell
+      title="单元格"
+      value="内容"
+      label="描述信息"
+      border="{{ false }}"
+    />
+  </van-cell-group>
+</demo-block>
 
-<view class="container">
+<demo-block title="单元格大小">
+  <van-cell-group>
+    <van-cell
+      title="单元格"
+      value="内容"
+      size="large"
+    />
+    <van-cell
+      title="单元格"
+      value="内容"
+      size="large"
+      use-label-slot
+      border="{{ false }}"
+    >
+      <view slot="label">描述信息</view>
+    </van-cell>
+  </van-cell-group>
+</demo-block>
 
-  <view class="doc-title zan-hairline--bottom">CELL</view>
+<demo-block title="展示图标">
+  <van-cell
+    title="单元格"
+    value="内容"
+    icon="location-o"
+    border="{{ false }}"
+  />
+</demo-block>
 
-  <view class="zan-panel">
-    <view class="zan-cell">
-      <view class="zan-cell__bd">单行列表</view>
-    </view>
-  </view>
+<demo-block title="展示箭头">
+  <van-cell title="单元格" is-link />
+  <van-cell
+    title="单元格"
+    value="内容"
+    is-link
+  />
+  <van-cell
+    title="单元格"
+    is-link
+    arrow-direction="down"
+    value="内容"
+    border="{{ false }}"
+  />
+</demo-block>
 
-  <view class="zan-panel">
-    <view class="zan-cell">
-      <view class="zan-cell__bd">单行列表</view>
-      <view class="zan-cell__ft">详细信息</view>
-    </view>
-  </view>
+<demo-block title="页面跳转">
+  <van-cell title="单元格" is-link url="/pages/dashboard/index" />
+  <van-cell title="单元格" is-link url="/pages/dashboard/index" link-type="redirectTo" />
+</demo-block>
 
-  <view class="zan-panel">
-    <view class="zan-cell">
-      <view class="zan-cell__icon zan-icon zan-icon-checked" style="color:#38f;"></view>
-      <view class="zan-cell__bd">单行列表</view>
-      <view class="zan-cell__ft">详细信息</view>
-    </view>
-  </view>
+<demo-block title="分组标题">
+  <van-cell-group title="分组 1">
+    <van-cell title="单元格" value="内容" />
+  </van-cell-group>
+  <van-cell-group title="分组 2">
+    <van-cell title="单元格" value="内容" />
+  </van-cell-group>
+</demo-block>
 
-  <view class="zan-panel">
-    <view class="zan-cell">
-      <view class="zan-cell__bd">
-        <view class="zan-cell__text">单行列表</view>
-        <view class="zan-cell__desc">附加描述</view>
-      </view>
-      <view class="zan-cell__ft">详细信息</view>
+<demo-block title="使用插槽">
+  <van-cell value="内容" icon="shop-o" is-link>
+    <view slot="title">
+      <view class="title">单元格</view>
+      <van-tag type="danger">标签</van-tag>
     </view>
-  </view>
+  </van-cell>
+  <van-cell title="单元格" border="{{ false }}">
+    <van-icon slot="right-icon" name="search" />
+  </van-cell>
+</demo-block>
 
-  <view class="zan-panel">
-    <view class="zan-cell zan-cell--access">
-      <view class="zan-cell__bd">单行列表</view>
-      <view class="zan-cell__ft"></view>
-    </view>
-  </view>
-
-  <view class="zan-panel">
-    <view class="zan-cell zan-cell--switch">
-      <view class="zan-cell__bd">开关</view>
-      <view class="zan-cell__ft">
-        <template is="zan-switch" data="{{ checked }}"/>
-      </view>
-    </view>
-  </view>
-
-  <view class="zan-panel">
-    <view class="zan-cell zan-cell--access">
-      <view class="zan-cell__bd">单行列表</view>
-      <view class="zan-cell__ft">详细信息</view>
-    </view>
-  </view>
-
-  <view class="zan-panel">
-    <view class="zan-cell">
-      <view class="zan-cell__bd">多行列表</view>
-    </view>
-    <view class="zan-cell">
-      <view class="zan-cell__bd">多行列表</view>
-    </view>
-    <view class="zan-cell">
-      <view class="zan-cell__bd">多行列表</view>
-    </view>
-  </view>
-
-  <view class="zan-panel">
-    <view class="zan-cell">
-      <view class="zan-cell__bd">多行列表</view>
-      <view class="zan-cell__ft">详细信息</view>
-    </view>
-    <view class="zan-cell">
-      <view class="zan-cell__bd">多行列表</view>
-      <view class="zan-cell__ft">详细信息</view>
-    </view>
-    <view class="zan-cell">
-      <view class="zan-cell__bd">多行列表</view>
-      <view class="zan-cell__ft">详细信息</view>
-    </view>
-  </view>
-
-  <view class="zan-panel">
-    <view class="zan-cell zan-cell--access">
-      <view class="zan-cell__bd">多行列表</view>
-      <view class="zan-cell__ft"></view>
-    </view>
-    <view class="zan-cell zan-cell--access">
-      <view class="zan-cell__bd">多行列表</view>
-      <view class="zan-cell__ft"></view>
-    </view>
-    <view class="zan-cell zan-cell--access">
-      <view class="zan-cell__bd">多行列表</view>
-      <view class="zan-cell__ft"></view>
-    </view>
-  </view>
-
-  <view class="zan-panel">
-    <view class="zan-cell zan-cell--access">
-      <view class="zan-cell__bd">多行列表</view>
-      <view class="zan-cell__ft">详细信息</view>
-    </view>
-    <view class="zan-cell zan-cell--access">
-      <view class="zan-cell__bd">多行列表</view>
-      <view class="zan-cell__ft">详细信息</view>
-    </view>
-    <view class="zan-cell zan-cell--access">
-      <view class="zan-cell__bd">多行列表</view>
-      <view class="zan-cell__ft">详细信息</view>
-    </view>
-  </view>
-
-</view>
+<demo-block title="垂直居中">
+  <van-cell
+    center
+    title="单元格"
+    value="内容"
+    label="描述信息"
+  />
+</demo-block>

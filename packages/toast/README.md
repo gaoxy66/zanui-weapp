@@ -1,64 +1,118 @@
-## Toast 轻提示
+# Toast 轻提示
 
-### 使用指南
-在 app.wxss 中引入组件库所有样式
-```css
-@import "path/to/zanui-weapp/dist/index.wxss";
+### 引入
+
+在`app.json`或`index.json`中引入组件，详细介绍见[快速上手](#/quickstart#yin-ru-zu-jian)
+
+```json
+"usingComponents": {
+  "van-toast": "@vant/weapp/toast/index"
+}
 ```
 
-在需要使用的页面里引入组件库模板和脚本
+## 代码演示
+
+### 文字提示
+
+```javascript
+import Toast from 'path/to/@vant/weapp/dist/toast/toast';
+
+Toast('我是提示文案，建议不超过十五字~');
+```
+
 ```html
-<import src="path/to/zanui-weapp/dist/toast/index.wxml" />
-
-<!-- 直接使用 zan-toast 模板，并且直接传入 zanToast -->
-<template is="zan-toast" data="{{ zanToast }}"></template>
-```
-```js
-const { Toast, extend } = require('path/to/zanui-weapp/dist/index');
-
-// 在 Page 中混入 Toast 里面声明的方法
-Page(extend({}, Toast, {
-  // ...
-}));
+<van-toast id="van-toast" />
 ```
 
-### 代码演示
-在 js 中直接调用 this.showZanToast 即可
-```js
-this.showZanToast('toast的内容');
+### 加载提示
 
-this.showZanToast({
-  title: 'toast的内容'
+```javascript
+Toast.loading({
+  mask: true,
+  message: '加载中...',
 });
 ```
 
-Toast 支持在文字上展示图标，用法如下
-```js
-this.showZanToast({
-  title: 'toast的内容',
-  // icon 仅支持 Icon 组件内提供的
-  icon: 'fail'
+### 成功/失败提示
+
+```javascript
+Toast.success('成功文案');
+Toast.fail('失败文案');
+```
+
+### 高级用法
+
+```javascript
+const toast = Toast.loading({
+  duration: 0, // 持续展示 toast
+  forbidClick: true, // 禁用背景点击
+  message: '倒计时 3 秒',
+  loadingType: 'spinner',
+  selector: '#custom-selector',
+});
+
+let second = 3;
+const timer = setInterval(() => {
+  second--;
+  if (second) {
+    toast.setData({
+      message: `倒计时 ${second} 秒`,
+    });
+  } else {
+    clearInterval(timer);
+    Toast.clear();
+  }
+}, 1000);
+```
+
+```html
+<van-toast id="custom-selector" />
+```
+
+### OnClose 回调函数
+
+```javascript
+Toast({
+  type: 'success',
+  message: '提交成功',
+  onClose: () => {
+    console.log('执行OnClose函数');
+  },
 });
 ```
 
-Toast 组件扩展了一个 showZanLoading 的方法，快速展示加载中
-```js
-this.showZanLoading('toast的内容');
-```
+## API
 
-### 参数说明
+### 方法
 
-#### 方法
-| 方法名       | 参数      | 返回值       | 介绍       |
-|-----------|-----------|-----------|-------------|
-| showZanToast | `title \| options`, `timeout` | - | 展示提示 |
-| showZanLoading | `title \| options` | - | 展示加载提示 |
-| clearZanToast |  | - | 关闭提示 |
+| 方法名 | 参数 | 返回值 | 介绍 |
+| --- | --- | --- | --- |
+| Toast | `options | message` | toast 实例 | 展示提示 |
+| Toast.loading | `options | message` | toast 实例 | 展示加载提示 |
+| Toast.success | `options | message` | toast 实例 | 展示成功提示 |
+| Toast.fail | `options | message` | toast 实例 | 展示失败提示 |
+| Toast.clear | `clearAll` | `void` | 关闭提示 |
+| Toast.setDefaultOptions | `options` | `void` | 修改默认配置，对所有 Toast 生效 |
+| Toast.resetDefaultOptions | - | `void` | 重置默认配置，对所有 Toast 生效 |
 
-#### options 具体参数如下
-| 参数       | 说明      | 类型       | 默认值       | 必须      |
-|-----------|-----------|-----------|-------------|-------------|
-| title | toast 显示文案 | String | - | |
-| icon | toast 显示图标，仅支持 Icon 组件内提供的和 `loading` | String | - | |
-| image | toast 显示图标，为图片的链接，传入此值后会覆盖 icon 值 | String | - | |
-| timeout | toast 显示时间，小于0则会一直显示，需要手动调用 clearZanToast 清除 | Number | - | |
+### Options
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| type | 提示类型，可选值为 `loading` `success` `fail` `html` | _string_ | `text` | - |
+| position | 位置，可选值为 `top` `middle` `bottom` | _string_ | `middle` | - |
+| message | 内容 | _string_ | `''` | - | - |
+| mask | 是否显示遮罩层 | _boolean_ | `false` | - |
+| forbidClick | 是否禁止背景点击 | _boolean_ | `false` | - |
+| loadingType | 加载图标类型, 可选值为 `spinner` | _string_ | `circular` | - |
+| zIndex | z-index 层级 | _number_ | `1000` | - |
+| duration | 展示时长(ms)，值为 0 时，toast 不会消失 | _number_ | `2000` | - |
+| selector | 自定义选择器 | _string_ | `van-toast` | - |
+| context | 选择器的选择范围，可以传入自定义组件的 this 作为上下文 | _object_ | 当前页面 | - |
+| onClose | 关闭时的回调函数 | _Function_ | - | - |
+
+### Slot
+
+| 名称 | 说明       |
+| ---- | ---------- |
+| -    | 自定义内容 |

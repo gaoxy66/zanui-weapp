@@ -1,36 +1,22 @@
-var Zan = require('../../dist/index');
+import Page from '../../common/page';
+import Dialog from '../../dist/dialog/dialog';
 
-Page(Object.assign({}, Zan.Switch, {
+Page({
   data: {
-    sync: {
-      checked: false
-    },
-    async: {
-      checked: true,
-      loading: false
-    },
+    checked: true,
+    checked2: true
   },
 
-  handleZanSwitchChange(e) {
-    var componentId = e.componentId;
-    var checked = e.checked;
+  onChange({ detail }) {
+    this.setData({ checked: detail });
+  },
 
-    if (componentId == 'sync') {
-      // 同步开关
-      this.setData({
-        [`${componentId}.checked`]: checked
-      });
-    } else if (componentId == 'async') {
-      // 异步开关
-      this.setData({
-        [`${componentId}.loading`]: true
-      });
-      setTimeout(() => {
-        this.setData({
-          [`${componentId}.loading`]: false,
-          [`${componentId}.checked`]: checked
-        });
-      }, 500);
-    }
+  onChange2({ detail }) {
+    Dialog.confirm({
+      title: '提示',
+      message: '是否切换开关？'
+    }).then((res) => {
+      this.setData({ checked2: detail });
+    });
   }
-}));
+});

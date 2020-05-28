@@ -1,30 +1,19 @@
-var Zan = require('../../dist/index');
+import Page from '../../common/page';
+import Toast from '../../dist/toast/toast';
 
-Page(Object.assign({}, Zan.Stepper, {
+Page({
   data: {
-    stepper1: {
-      stepper: 10,
-      min: 1,
-      max: 20
-    },
-    stepper2: {
-      stepper: 1,
-      min: 1,
-      max: 1
-    },
-    stepper3: {
-      stepper: 10,
-      min: 1,
-      max: 20
-    }
+    value: 1
   },
 
-  handleZanStepperChange(e) {
-    var componentId = e.componentId;
-    var stepper = e.stepper;
-
-    this.setData({
-      [`${componentId}.stepper`]: stepper
+  onChange(event) {
+    Toast.loading({
+      forbidClick: true
     });
+
+    setTimeout(() => {
+      Toast.clear();
+      this.setData({ value: event.detail });
+    }, 500);
   }
-}));
+});

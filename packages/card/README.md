@@ -1,49 +1,91 @@
-## Card 卡片
+# Card 商品卡片
 
-### 使用指南
-在 app.wxss 中引入组件库所有样式
-```css
-@import "path/to/zanui-weapp/dist/index.wxss";
+### 引入
+
+在`app.json`或`index.json`中引入组件，详细介绍见[快速上手](#/quickstart#yin-ru-zu-jian)
+
+```json
+"usingComponents": {
+  "van-card": "@vant/weapp/card/index"
+}
 ```
 
-### 代码演示
+## 代码演示
 
-#### 基础用法
-卡片可以用于左侧图片，右侧描述信息的展示。
-`zan-card` 由 `zan-card__thumb` 和 `zan-card__detail` 组成。分别负责左侧图片展示和右侧内容区域展示
-如下，是一个商品信息的展示：
+### 基础用法
+
 ```html
-<view class="zan-card">
-  <!-- 卡片左侧商品图片 -->
-  <view class="zan-card__thumb">
-    <image class="zan-card__img"
-      src="https://img.yzcdn.cn/upload_files/2016/11/25/FpqPXlrMRjKwJs8VdTu3ZDJCj4j5.jpeg?imageView2/2/w/200/h/200/q/90/format/jpeg"
-      mode="aspectFit"
-    ></image>
-  </view>
-  <!-- 卡片右侧详情描述 -->
-  <view class="zan-card__detail">
-    <!-- 商品标题行 -->
-    <!-- 每行可以使用 zan-card__detail-row 来控制展示区域 -->
-    <!-- 每行里面可以用 zan-card__left-col zan-card__right-col 来控制左右展示 -->
-    <view class="zan-card__detail-row">
-      <view class="zan-card__right-col">¥ 999.99</view>
-      <view class="zan-card__left-col zan-ellipsis--l2">
-         红烧牛肉【虚拟商品】【有库存】【有sku】
-      </view>
-    </view>
-    <!-- 商品附属信息展示行 -->
-    <view class="zan-card__detail-row zan-c-gray-darker">
-      <view class="zan-card__right-col">x2</view>
-      <view class="zan-card__left-col">
-        3000克 50%
-      </view>
-    </view>
-    <!-- 商品操作按钮相关 -->
-    <view class="zan-card__detail-row zan-c-gray-darker">
-      <view class="zan-card__left-col zan-c-red">已发货</view>
-    </view>
-  </view>
-</view>
+<van-card
+  num="2"
+  price="2.00"
+  desc="描述信息"
+  title="商品标题"
+  thumb="{{ imageURL }}"
+/>
 ```
 
+### 高级用法
+
+可以通过插槽添加定制内容
+
+```html
+<van-card
+  num="2"
+  tag="标签"
+  price="10.00"
+  desc="描述信息"
+  title="商品标题"
+  thumb="{{ imageURL }}"
+>
+  <view slot="footer">
+    <van-button size="mini">按钮</van-button>
+    <van-button size="mini">按钮</van-button>
+  </view>
+</van-card>
+```
+
+## API
+
+### Props
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| thumb | 左侧图片 | _string_ | - | - |
+| thumb-mode | 左侧图片裁剪、缩放的模式，可选值参考小程序 image 组件 mode 属性值 | _string_ | `aspectFit` | - |
+| title | 标题 | _string_ | - | - |
+| desc | 描述 | _string_ | - | - |
+| tag | 标签 | _string_ | - | - |
+| num | 商品数量 | _string \| number_ | - | - |
+| price | 商品价格 | _string \| number_ | - | - |
+| origin-price | 商品划线原价 | _string \| number_ | - | - |
+| centered | 内容是否垂直居中 | _string_ | `false` | - |
+| currency | 货币符号 | _string_ | `¥` | - |
+| thumb-link | 点击左侧图片后跳转的链接地址 | _string_ | - | - |
+| link-type | 链接跳转类型，可选值为 `redirectTo` `switchTab` `reLaunch` | _string_ | `navigateTo` | - |
+| lazy-load | 是否开启图片懒加载 | _boolean_ | `false` | - |
+
+### Slot
+
+| 名称      | 说明                                        |
+| --------- | ------------------------------------------- |
+| title     | 自定义标题栏，如果设置了`title`属性则不生效 |
+| desc      | 自定义描述栏，如果设置了`desc`属性则不生效  |
+| price-top | 自定义价格上方区域                          |
+| price     | 自定义价格                                  |
+| num       | 自定义数量                                  |
+| thumb     | 自定义 thumb，如果设置了`thumb`属性则不生效 |
+| bottom    | 自定义价格下方区域                          |
+| footer    | 自定义 footer                               |
+| tags      | 自定义 tags                                 |
+
+### 外部样式类
+
+| 类名               | 说明           |
+| ------------------ | -------------- |
+| custom-class       | 根节点样式类   |
+| thumb-class        | 左侧图片样式类 |
+| title-class        | 标题样式类     |
+| price-class        | 价格样式类     |
+| origin-price-class | 划线原价样式类 |
+| desc-class         | 描述样式类     |
+| num-class          | 数量样式类     |
